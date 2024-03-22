@@ -12,9 +12,9 @@ const port = 3001;
 
 app.use(bodyParser.json());
 
-// Rota para calcular o maior preço e a média dos preços
-app.post('/calcular-precos', (req, res) => {
+app.post('/exercicio7', (req, res) => {
     const produtos = req.body.produtos;
+    
 
     let maiorPreco = Number.MIN_VALUE; 
     let somaPrecos = 0;
