@@ -4,14 +4,19 @@
 
 
 
-const express = require('express')
-const app = express()
-const port = 3001
+const express = require('express');
+const bodyParser = require('body-parser');
 
+const app = express();
+const port = 3001;
+
+app.use(bodyParser.json());
+
+// Rota para calcular o maior preço e a média dos preços
 app.post('/calcular-precos', (req, res) => {
-    const produtos = req.body.produtos
+    const produtos = req.body.produtos;
 
-    let maiorPreco = Number.MIN_VALUE;
+    let maiorPreco = Number.MIN_VALUE; 
     let somaPrecos = 0;
 
     for (const produto of produtos) {
@@ -26,9 +31,31 @@ app.post('/calcular-precos', (req, res) => {
     const mediaPrecos = somaPrecos / produtos.length;
 
     res.json({ maiorPreco, mediaPrecos });
-    console.log(produtos)
-})
+});
+
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+    console.log(`Servidor rodando na porta ${port}`);
+});
+
+// tabela de produtos usada no post
+// {
+//     "produtos": [
+//       {"codigo": "001", "preco": 10},
+//       {"codigo": "002", "preco": 15},
+//       {"codigo": "003", "preco": 20},
+//       {"codigo": "004", "preco": 25},
+//       {"codigo": "005", "preco": 30},
+//       {"codigo": "006", "preco": 35},
+//       {"codigo": "007", "preco": 40},
+//       {"codigo": "008", "preco": 45},
+//       {"codigo": "009", "preco": 50},
+//       {"codigo": "010", "preco": 55},
+//       {"codigo": "011", "preco": 60},
+//       {"codigo": "012", "preco": 65},
+//       {"codigo": "013", "preco": 70},
+//       {"codigo": "014", "preco": 75},
+//       {"codigo": "015", "preco": 80}
+//     ]
+//   }
+  
